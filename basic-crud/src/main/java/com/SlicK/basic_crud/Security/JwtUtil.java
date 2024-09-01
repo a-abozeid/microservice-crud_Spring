@@ -17,7 +17,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 30 * 1)) //30 sec
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 2)) //2 min
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
@@ -25,7 +25,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 90 * 1)) //1.5 min
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 5)) //5 min
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
@@ -41,21 +41,12 @@ public class JwtUtil {
         return extractClaims(token).getSubject();
     }
 
-    public String extractUsernameFromRefreshToken(String token) {
-        return extractClaims(token).getSubject();
-    }
-
     public boolean isTokenExpired(String token) {
         return extractClaims(token).getExpiration().before(new Date());
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
-
-    public boolean validateRefreshToken(String token, UserDetails userDetails) {
-        final String username = extractUsernameFromRefreshToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

@@ -5,6 +5,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
-        final String refreshHeader = request.getHeader("RefreshAuth");
+        final String refreshAuthorizationHeader = request.getHeader("RefreshAuth");
         String username = null;
         String jwtToken = null;
         String jwtRefreshToken = null;
@@ -53,12 +55,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             } catch (Exception e) {
                 // Token has expired, proceed to check refresh token
                 System.out.println("Token expired: " + e.getMessage());
-                if (refreshHeader != null && refreshHeader.startsWith("Refresh ")) {
-                    jwtRefreshToken = refreshHeader.substring(8);
+                if (refreshAuthorizationHeader != null && refreshAuthorizationHeader.startsWith("Refresh ")) {
+                    jwtRefreshToken = refreshAuthorizationHeader.substring(8);
                     try {
                         username = jwtUtil.extractUsername(jwtRefreshToken);
                         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                        if (jwtUtil.validateRefreshToken(jwtRefreshToken, userDetails)) {
+                        if (jwtUtil.validateToken(jwtRefreshToken, userDetails)) {
                             // Generate new tokens and pass them to response header
                             String newToken = jwtUtil.generateToken(username);
                             String newRefreshToken = jwtUtil.generateRefreshToken(username);
@@ -71,7 +73,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                         }
                     } catch (Exception ex) {
+                        // here
+                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                        response.getWriter().write("{\"message\": \"Error extracting username from refresh token: " + ex.getMessage() + "\"}");
+                        response.getWriter().flush();
                         System.out.println("Error extracting username from refresh token: " + ex.getMessage());
+                        return;
                     }
                 }
             }

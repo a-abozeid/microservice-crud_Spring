@@ -40,4 +40,6 @@ public class GlobalExceptionHandler {
         errorObject.setTimeStamp(new Date());
         return new ResponseEntity<>(errorObject, HttpStatus.BAD_REQUEST);
     }
+
+
 }

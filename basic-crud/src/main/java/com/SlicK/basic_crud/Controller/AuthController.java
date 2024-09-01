@@ -41,6 +41,6 @@ public class AuthController {
                     .body("Token generated successfully");
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong username (email) or password!");
     }
 }
