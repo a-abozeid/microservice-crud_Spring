@@ -38,7 +38,7 @@ public class AuthController {
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
                     .header("RefreshAuth", "Refresh " + refreshToken)
-                    .body("Token generated successfully");
+                    .body("Tokens generated successfully");
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong username (email) or password!");

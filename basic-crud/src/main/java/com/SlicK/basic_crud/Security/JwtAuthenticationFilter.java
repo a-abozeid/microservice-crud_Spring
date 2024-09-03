@@ -73,12 +73,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                         }
                     } catch (Exception ex) {
-                        // here
                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
                         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                         response.getWriter().write("{\"message\": \"Error extracting username from refresh token: " + ex.getMessage() + "\"}");
                         response.getWriter().flush();
-                        System.out.println("Error extracting username from refresh token: " + ex.getMessage());
+                        System.out.println("Refresh Token expired: " + ex.getMessage());
                         return;
                     }
                 }
