@@ -26,7 +26,6 @@ public class controller {
                 .exchange("http://localhost:8000/persons/{id}", HttpMethod.GET, entity, user.class, uriVariables);
 
         user user = responseEntity.getBody();
-
         return new user(user.getId(), user.getName(), user.getEmail());
     }
 }
