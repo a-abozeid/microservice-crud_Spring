@@ -1,9 +1,8 @@
-package com.SlicK.api_gateway;
+package com.SlicK.api_gateway.Controller;
 
-import com.SlicK.api_gateway.JwtUtil;
+import com.SlicK.api_gateway.Security.JwtUtil;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

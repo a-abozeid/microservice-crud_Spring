@@ -1,4 +1,4 @@
-package com.SlicK.api_gateway;
+package com.SlicK.api_gateway.Security;
 
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;

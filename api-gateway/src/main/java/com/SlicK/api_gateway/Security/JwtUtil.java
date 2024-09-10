@@ -1,4 +1,4 @@
-package com.SlicK.api_gateway;
+package com.SlicK.api_gateway.Security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
