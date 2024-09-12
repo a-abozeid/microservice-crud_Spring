@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String secretKey = "123456test"; // Change to a secure key
+    private final String secretKey = "123456test"; // Change to a secure key
 
     public String generateToken() {
         return Jwts.builder()

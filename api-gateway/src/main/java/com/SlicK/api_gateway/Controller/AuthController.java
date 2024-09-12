@@ -15,12 +15,11 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/token")
-    @RateLimiter(name = "default")
     public ResponseEntity<String> auth() {
         String token = jwtUtil.generateToken();
-        System.out.println("\nGenerated Token: " + token);
+        System.out.println("Generated Token: " + token);
         return ResponseEntity.ok()
-                .header("Gateway", "Bearer " + token)
+                .header("Gateway", "GateTkn " + token)
                 .body("Token generated successfully");
     }
 

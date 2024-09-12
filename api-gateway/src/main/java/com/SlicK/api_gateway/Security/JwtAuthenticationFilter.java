@@ -1,6 +1,5 @@
 package com.SlicK.api_gateway.Security;
 
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -34,7 +33,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                 return response.setComplete();
             }
-            String token = request.getHeaders().getOrEmpty("Gateway").get(0).substring(7);
+            String token = request.getHeaders().getOrEmpty("Gateway").get(0).substring(8);
 
             try {
                 jwtUtil.validateToken(token);
