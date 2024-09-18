@@ -1,21 +1,25 @@
 # microservice-crud_Spring
 
-Java application consisting of five microservices:
-Basic-CRUD:
-Communicates with a MySQL server.
-Utilizes Spring JWT and Security to generate tokens and refresh tokens, ensuring security and session continuity.
-Validates data to maintain consistency in the database.
-Hashes passwords using bcrypt.
-Enhanced with JPA Specification for filtering and pagination, allowing users to search by partial names and customize data retrieval.
-Naming-Server:
-Uses Eureka as a discovery server.
-API-Gateway:
-Handles routing.
-Implements JWT tokens to ensure only verified users can access the gateway.
-Config-Server:
-Hosts configuration files in a GitHub repository.
-Secured with Spring Security to prevent unauthorized access to configuration files.
-Rest-4CRUD:
-Provides a REST API to interact with Basic-CRUD.
+This Java-based application consists of five microservices, each with a specific purpose:
 
-There is also logging on the level of each method (method name, arguments and returns).
+1. Basic-CRUD
+Communicates with a MySQL server to manage data.
+Implements Spring Security with JWT to handle authentication and token generation (including refresh tokens).
+Uses bcrypt for password hashing to enhance security.
+Applies JPA Specification for dynamic filtering and pagination, allowing users to search by partial names and customize data retrieval.
+Performs data validation to maintain consistency and integrity within the database.
+Includes Mockito to test the service layer.
+2. Naming-Server
+Acts as a Eureka discovery server for service registration and discovery.
+3. API-Gateway
+Manages routing between services.
+Secures routes using JWT tokens, ensuring that only verified users can access protected resources.
+4. Config-Server
+Hosts configuration files stored in a GitHub repository.
+Secured with Spring Security to prevent unauthorized access to the configuration.
+5. Rest-4CRUD
+Provides a REST API for interaction with the Basic-CRUD service, enabling CRUD operations.
+
+*. Additional Features:
+Logging: Logs each method's name, arguments, and return values for debugging and auditing purposes.
+Security Enhancement: Special character validation in all request bodies to prevent script injection attacks.
