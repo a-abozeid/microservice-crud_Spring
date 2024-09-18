@@ -30,6 +30,7 @@ public class PersonServiceImpl implements PersonService{
         if(repository.existsByEmail(personDto.getEmail())){
             throw new EmailExistsExc("This Email already exists, plz add another email");
         }
+
         Person person = mapToPerson(personDto);
         person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
         return mapToDto(repository.save(person));
@@ -106,7 +107,7 @@ public class PersonServiceImpl implements PersonService{
 
 
     //Mapping****************************************************************
-    public PersonDto mapToDto(Person person){
+    private PersonDto mapToDto(Person person){
         PersonDto dto = new PersonDto();
         dto.setId(person.getId());
         dto.setName(person.getName());
@@ -116,7 +117,7 @@ public class PersonServiceImpl implements PersonService{
         return dto;
     }
 
-    public Person mapToPerson(PersonDto dto){
+    private Person mapToPerson(PersonDto dto){
         Person person = new Person();
         person.setName(dto.getName());
         person.setEmail(dto.getEmail());

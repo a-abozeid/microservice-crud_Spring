@@ -21,6 +21,7 @@ public class PersonDto {
     @Email(message = "Email should be valid")
     String email;
 
+    @NotBlank(message = "Phone is mandatory")
     @Size(min = 11, max = 11, message = "Phone number must be exactly 11 characters long")
     String phoneNum;
 

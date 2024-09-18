@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
+//@ConditionalOnProperty()
 public class EmailScheduler {
 
     @Autowired
