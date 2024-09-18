@@ -3,13 +3,14 @@ package com.SlicK.basic_crud.Utils;
 import com.SlicK.basic_crud.Service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
-//@ConditionalOnProperty()
+@ConditionalOnProperty(name = "scheduling.mail", havingValue = "true", matchIfMissing = false)
 public class EmailScheduler {
 
     @Autowired
