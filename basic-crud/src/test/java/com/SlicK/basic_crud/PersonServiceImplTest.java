@@ -9,9 +9,11 @@ import com.SlicK.basic_crud.Repository.PersonRepository;
 import com.SlicK.basic_crud.Service.PersonServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 //@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PersonServiceImplTest {
 
     @InjectMocks
@@ -41,7 +44,7 @@ class PersonServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+//        MockitoAnnotations.openMocks(this);
         
         personDto = new PersonDto();
         personDto.setEmail("test@testing.com");
@@ -106,7 +109,7 @@ class PersonServiceImplTest {
 
     @Test
     void testFindAllPersons_EmptyResult() {
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, 5);
         Page<Person> personPage = mock(Page.class);
         when(personPage.getContent()).thenReturn(List.of());
         when(personPage.getTotalPages()).thenReturn(0);
@@ -114,7 +117,7 @@ class PersonServiceImplTest {
         when(personPage.isLast()).thenReturn(true);
         when(personRepository.findAll(any(Specification.class), eq(pageable))).thenReturn(personPage);
 
-        PersonResponse response = personService.findAllPersons(0, 10, "non-existing");
+        PersonResponse response = personService.findAllPersons(0, 5, "non-existing");
 
         assertEquals(0, response.getTotalElements());
         assertEquals(0, response.getTotalPages());

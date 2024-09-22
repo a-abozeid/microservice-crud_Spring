@@ -8,7 +8,7 @@ This Java-based application consists of five microservices, each with a specific
  - Uses bcrypt for password hashing to enhance security.
  - Applies JPA Specification for dynamic filtering and pagination, allowing users to search by partial names and customize data retrieval.
  - Performs data validation to maintain consistency and integrity within the database.
- - Includes Mockito to test the service layer.
+ - Includes Mockito to unit test the service layer.
 2. Naming-Server
  - Acts as a Eureka discovery server for service registration and discovery.
 3. API-Gateway
