@@ -1,4 +1,4 @@
-package com.SlicK.soap_demo2;
+package com.slick.soap_demo2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

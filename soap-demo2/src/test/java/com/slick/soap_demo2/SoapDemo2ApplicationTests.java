@@ -1,4 +1,4 @@
-package com.SlicK.soap_demo2;
+package com.slick.soap_demo2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
