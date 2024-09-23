@@ -6,7 +6,7 @@
 //
 
 
-package com.slick.service2;
+package com.SlicK.service2;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

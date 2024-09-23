@@ -31,7 +31,6 @@ public class RequestValidationFilter implements Filter {
 
         CachedBodyHttpServletRequest cachedRequest = new CachedBodyHttpServletRequest(httpRequest);
         String requestBody = new String(cachedRequest.getCachedBody());
-        System.out.println("\nCached Request Body: " + requestBody);//*************************************
 
         if (SCRIPT_INJECTION_PATTERN.matcher(requestBody).find()) {
             httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);

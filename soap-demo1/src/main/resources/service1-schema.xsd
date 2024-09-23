@@ -4,7 +4,6 @@
            xmlns="http://slick.com/service1"
            elementFormDefault="qualified">
 
-    <!-- Request element -->
     <xs:element name="GetCustomerRequest">
         <xs:complexType>
             <xs:sequence>
@@ -13,7 +12,6 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- Response element -->
     <xs:element name="GetCustomerResponse">
         <xs:complexType>
             <xs:sequence>

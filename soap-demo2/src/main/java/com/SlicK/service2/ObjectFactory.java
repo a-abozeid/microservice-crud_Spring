@@ -38,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link com.slick.service2.GetOrderRequest }
+     * Create an instance of {@link GetOrderRequest }
      * 
      */
-    public com.slick.service2.GetOrderRequest createGetOrderRequest() {
-        return new com.slick.service2.GetOrderRequest();
+    public GetOrderRequest createGetOrderRequest() {
+        return new GetOrderRequest();
     }
 
     /**

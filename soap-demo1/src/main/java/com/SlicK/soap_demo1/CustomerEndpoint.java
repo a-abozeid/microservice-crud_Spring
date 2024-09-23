@@ -5,6 +5,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.slick.service1.GetCustomerResponse;
+import com.slick.service1.GetCustomerRequest;
+
 @Endpoint
 public class CustomerEndpoint {
 
@@ -12,8 +15,8 @@ public class CustomerEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetCustomerRequest")
     @ResponsePayload
-    public com.SlicK.service1.GetCustomerResponse getCustomer(@RequestPayload com.SlicK.service1.GetCustomerRequest request) {
-        com.SlicK.service1.GetCustomerResponse response = new com.SlicK.service1.GetCustomerResponse();
+    public GetCustomerResponse getCustomer(@RequestPayload GetCustomerRequest request) {
+        GetCustomerResponse response = new GetCustomerResponse();
         response.setName("test");
         response.setEmail("test@example.com");
         response.setPhone("12345678910");

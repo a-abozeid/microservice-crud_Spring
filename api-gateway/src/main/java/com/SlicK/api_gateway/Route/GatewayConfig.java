@@ -18,6 +18,12 @@ public class GatewayConfig {
                 .route("person-service", r -> r.path("/BASIC-CRUD/**")
                         .filters(f -> f.stripPrefix(1).filter(filter))
                         .uri("lb://basic-crud"))
+                .route("soap-demo1", r -> r.path("/SOAP-DEMO1/**")
+                        .filters(f -> f.stripPrefix(1).filter(filter))
+                        .uri("lb://soap-demo1"))
+                .route("soap-demo2", r -> r.path("/SOAP-DEMO2/**")
+                        .filters(f -> f.stripPrefix(1).filter(filter))
+                        .uri("lb://soap-demo2"))
                 .build();
     }
 }
